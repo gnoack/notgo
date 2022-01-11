@@ -30,12 +30,12 @@ type Future[T any] struct {
 }
 
 // Value returns the future's value, waiting for fulfilment if needed.
-func (f*Future[T]) Value() T {
+func (f *Future[T]) Value() T {
 	<-f.done
 	return f.v
 }
 
-func (f*Future[T]) fulfil(v T) {
+func (f *Future[T]) fulfil(v T) {
 	f.v = v
 	close(f.done)
 }
