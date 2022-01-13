@@ -8,7 +8,8 @@ import (
 
 func TestFold(t *testing.T) {
 	sl := []string{"foo", "bar", "baz"}
-	got := iter.Fold[string, string](iter.Slice[string](sl), "x", func(a, b string) string { return a + "," + b })
+	concat := func(a, b string) string { return a + "," + b }
+	got := iter.Fold(iter.Slice(sl), "x", concat)
 	want := "x,foo,bar,baz"
 
 	if got != want {
